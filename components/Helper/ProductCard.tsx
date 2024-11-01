@@ -35,7 +35,7 @@ const ProductCard = ({ singleProduct }: Props) => {
       </div>
 
       {/* Product Title */}
-      <Link href={`product/product-details/${singleProduct.id}`} className="text-lg text-blue-400 font-semibold mt-4 hover:underline">{singleProduct.title}</Link>
+      <Link href={`/product/product-details/${singleProduct.id}`} className="text-lg text-blue-400 font-semibold mt-4 hover:underline">{singleProduct.title}</Link>
 
       {/* Product Price */}
       <p className="text-rose-400 font-bold mt-2">Price <span className="text-green-600">${singleProduct.price}</span></p>
