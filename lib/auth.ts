@@ -36,5 +36,4 @@ export const NEXT_AUTH_CONFIG = {
   pages:{
     signIn:"/signin"
   },
-  secret:process.env.NEXTAUTH_SECRET
 }
