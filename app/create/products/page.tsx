@@ -11,7 +11,7 @@ const page = () => {
   useEffect(() => {
     if (status !== "loading") {
       if(!session) signIn();
-      else if(session?.user?.role !== "ADMIN") redirect("/");
+      else if ((session?.user as { role?: string })?.role !== "ADMIN") redirect("/");
     }
   }, [session, status]);
 
