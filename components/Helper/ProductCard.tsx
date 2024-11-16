@@ -12,7 +12,7 @@ type Props = {
   singleProduct: Product
 }
 
-const ProductCard = ({ singleProduct }: Props) => {
+const ProductCard = ({ singleProduct }: any) => {
   const dispatch = useDispatch();
   const { toast } = useToast();
   const addToCartHanlder = (product: Product)=>{
@@ -38,13 +38,7 @@ const ProductCard = ({ singleProduct }: Props) => {
       <Link href={`/product/product-details/${singleProduct.id}`} className="text-lg text-blue-400 font-semibold mt-4 hover:underline">{singleProduct.title}</Link>
 
       {/* Product Price */}
-      <p className="text-rose-400 font-bold mt-2">Price <span className="text-green-600">${singleProduct.price}</span></p>
-
-      {/* Product Rating */}
-      <div className="mt-2 flex flex-row gap-4">
-        <p className="text-yellow-500 font-medium">{singleProduct.rating.rate} ⭐</p>
-        <span className="text-gray-500">({singleProduct.rating.count} reviews)</span>
-      </div>
+      <p className="text-rose-400 font-bold mt-2">Price <span className="text-green-600">: ₹{singleProduct.price}/-</span></p>
 
       {/* Product Category */}
       <Button onClick={()=>addToCartHanlder(singleProduct)} size={"icon"}>

@@ -6,12 +6,13 @@ export const getAllCategories = async ()=>{
 }
 
 export const allProducts = async ()=>{
-  const result = await axios.get("https://fakestoreapi.com/products");
+  const result = await axios.get("/api/products");
   return result.data;
 }
 
 export const singleProduct = async (id:string)=>{
-  const result = await axios.get(`https://fakestoreapi.com/products/${id}`);
+  // const result = await axios.get(`/api/products/${id}`);
+  const result = await axios.post("/getproducts", id);
   return result.data;
 }
 

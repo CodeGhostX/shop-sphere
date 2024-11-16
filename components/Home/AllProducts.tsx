@@ -1,37 +1,17 @@
-"use client"
-
-import { allProducts } from "@/Request/getAllCategories";
-import { Product } from "@/typing";
-import { useEffect, useState } from "react";
+import { allProducts } from "@/app/server/action";
 import Loader from "../Helper/Loader";
 import ProductCard from "../Helper/ProductCard";
 
-const AllProducts = () => {
-  const [products, setProducts] = useState<Product[]|null>(null);
-  const [loading, setLoading] = useState(true);
-  useEffect(()=>{
-    setLoading(true);
-    try {
-      const getProducts = async ()=>{
-        const result:Product[] = await allProducts();
-        setProducts(result);
-      }
-      getProducts();
-    } catch (error) {
-      console.log(error);
-    }
-    finally{
-      setLoading(false);
-    }
-  }, [])
+const AllProducts = async () => {
+  const products = await allProducts();
   return (
     <div>
-      <h1 className="font-bold text-center text-2xl">All products</h1>
+      <h1 className="font-bold text-center text-2xl">All Products</h1>
       {/* Item Card */}
       {
-        loading ? 
+        !products ?
           <div className="m-64 flex justify-center items-center">
-            <Loader />
+            <Loader/>
           </div> 
         : 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ml-18 lg:p-16 p-4">

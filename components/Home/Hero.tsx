@@ -6,12 +6,8 @@ const Hero = () => {
     <main className="grid grid-cols-1 h-[36rem] lg:grid-cols-2">
       {/* Decription Left Side */}
       <div className="flex flex-col justify-center p-12 lg:p-32">
-        <h1 className="text-2xl lg:text-4xl font-extrabold">Shop the Latest Arrivals from Your <span className="text-rose-600">Favourite</span> Brands</h1>
+        <h1 className="text-2xl lg:text-4xl font-extrabold">Shop the Latest Arrivals from Your <span className="text-rose-600">Favourite 💓</span> Brands</h1>
         <p className="text-gray-400 text-md pt-3">Be the first to check out the newest releases from top brands. Keep your style fresh and your home updated with the latest in fashion, electronics, and more...</p>
-        <div className="flex flex-row justify-start gap-6 pt-8">
-          <Button variant="ghost" className="h-9 px-4 py-2 border-2 lg:h-10 rounded-md lg:px-8">Shop Now</Button>
-          <Button className="h-9 px-4 py-2 lg:h-10 rounded-md lg:px-8">Explore More</Button>
-        </div>
       </div>
 
       {/* Image Right Side */}

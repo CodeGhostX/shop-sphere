@@ -4,8 +4,8 @@ import PayPalButton from "@/components/Helper/PayPalButton";
 import { Button } from "@/components/ui/button";
 import { addItem, CartItem, clearcart, removeItem } from "@/store/cartSlice";
 import { RootState } from "@/store/store";
-import { useUser } from "@clerk/nextjs";
 import { Plus, Minus } from "lucide-react";
+import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -13,7 +13,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 const page = () => {
   const dispatch = useDispatch();
-  const {user} = useUser();
+  const session = useSession();
+  const user = session?.data?.user;
   const removeCartHandler = (id:number)=>{
     dispatch(removeItem({id}));
   }
@@ -68,7 +69,7 @@ const page = () => {
                     <div>
                       <h1 className="md:text-xl text-base font-bold text-black">{item.title}</h1>
                       <h1 className="md:textlg text-sm font-semibold">Category : {item.category}</h1>
-                      <h1 className="md:text-2xl text-lg font-bold text-blue-950">${item.price}</h1>
+                      <h1 className="md:text-2xl text-lg font-bold text-blue-950">₹{item.price}</h1>
                       <h1 className="md:text-lg text-sm font-semibold">Quantity : {item.quantity}</h1>
                       <div className="flex items-center mt-4 space-x-4">
                       <Button onClick={()=>addCartHandler(item)} size="sm" variant="default">
@@ -90,7 +91,7 @@ const page = () => {
                 <div className="w-full h-[1.2px] bg-white bg-opacity-20"></div>
                 <div className="flex mt-10 mb-10 text-xl uppercase font-semibold text-white items-center justify-between">
                   <span>Toatl Price</span>
-                  <span>${totalPrice}</span>
+                  <span>₹{totalPrice}/-</span>
                 </div>
                 <div className="flex mt-10 mb-10 text-xl uppercase font-semibold text-white items-center justify-between">
                   <span>Shipping</span>
@@ -98,13 +99,10 @@ const page = () => {
                 </div>
                 <div className="w-full h-[1.2px] bg-white bg-opacity-20"></div>
                 {!user && (
-                  <Link href="/sign-in">
-                    <Button className="bg-orange-400 w-full">Sign In to Checkout</Button>
-                  </Link>
+                  <Button onClick={()=>signIn()} className="bg-orange-400 p-6 w-full">Sign In to Checkout</Button>
                 )}
                 {
                   user && (
-                    // <Button className="bg-orange-400 w-full mt-6">Paypal</Button>
                     <PayPalButton amount={totalPrice} onSuccess={handleSuccess}/>
                   )
                 }

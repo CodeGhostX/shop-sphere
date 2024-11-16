@@ -4,7 +4,6 @@ import { FUNDING, PayPalScriptProvider, PayPalButtons } from "@paypal/react-payp
 import { defaultMaxListeners } from "events";
 
 const PayPalButton = ({amount, onSuccess}) => {
-  
   return (
     <PayPalScriptProvider options={{
       clientId:process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!,
