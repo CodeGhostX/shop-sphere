@@ -16,7 +16,7 @@ const AllProducts = async () => {
         : 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ml-18 lg:p-16 p-4">
             {
-              products?.map((item) => (
+              products?.map((item:any) => (
                 <ProductCard key={item.id} singleProduct={item} />
               ))
             }
